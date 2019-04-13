@@ -1,6 +1,6 @@
 {
   "name": "react-msal-redux",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "React library that supports authenticating against Azure AD using Msal using Redux",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -11,14 +11,15 @@
   "author": "Nelson Segarra <junicus@outlook.com>",
   "license": "MIT",
   "scripts": {
+    "clean": "rimraf build",
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "yarn build",
+    "prepare": "yarn clean && yarn build",
     "prepublishOnly": "yarn test && yarn lint",
     "preversion": "yarn lint",
-    "version": "yarn format && git -A src",
+    "version": "yarn format && git add src",
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
@@ -26,6 +27,7 @@
     "jest": "^24.1.0",
     "prettier": "^1.16.4",
     "redux": "^4.0.1",
+    "rimraf": "^2.6.3",
     "ts-jest": "^24.0.0",
     "tslint": "^5.13.0",
     "tslint-config-prettier": "^1.18.0",
