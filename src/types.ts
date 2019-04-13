@@ -80,6 +80,7 @@ export interface IAcquireAccessTokenSuccessAction {
   type: typeof AuthTypes.ACQUIRE_ACCESSTOKEN_SUCCESS;
   payload: {
     accessToken: string;
+    scopes: string[];
   };
 }
 

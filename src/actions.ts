@@ -52,9 +52,10 @@ export const acquireIdTokenSuccess = (idToken: string): AuthActionsTypes => ({
   type: AuthTypes.ACQUIRE_IDTOKEN_SUCCESS,
 });
 
-export const acquireAccessTokenSuccess = (accessToken: string): AuthActionsTypes => ({
+export const acquireAccessTokenSuccess = (accessToken: string, scopes: string[]): AuthActionsTypes => ({
   payload: {
     accessToken,
+    scopes,
   },
   type: AuthTypes.ACQUIRE_ACCESSTOKEN_SUCCESS,
 });

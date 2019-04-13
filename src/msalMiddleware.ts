@@ -29,6 +29,9 @@ export const msalMiddleware = (clientId: string, authority: string, options?: IM
       case AuthTypes.SIGNOUT:
         signOut()(dispatch);
         return next(action);
+      case AuthTypes.ACQUIRE_ACCESSTOKEN_SUCCESS:
+        setTimeout(() => acquireAccessToken(action.payload.scopes)(dispatch), 600000);
+        return next(action);
       default:
         return next(action);
     }
@@ -52,10 +55,11 @@ const signIn = (payload: ISignInActionPayload) => (dispatch: Dispatch<AuthAction
     if (popup) {
       userAgentApplication
         .loginPopup(scopes)
-        .then(idToken => {
+        .then(token => {
           user = userAgentApplication.getUser();
           dispatch(signInSuccess(user));
-          dispatch(acquireIdTokenSuccess(idToken));
+          dispatch(acquireIdTokenSuccess(token));
+          dispatch(acquireAccessTokenSuccess(token, scopes));
         })
         .catch(error => {
           dispatch(signInFailed(error));
@@ -67,13 +71,13 @@ const signIn = (payload: ISignInActionPayload) => (dispatch: Dispatch<AuthAction
 const acquireAccessToken = (scopes: string[]) => (dispatch: Dispatch<AuthActionsTypes>) => {
   userAgentApplication.acquireTokenSilent(scopes).then(
     accessToken => {
-      dispatch(acquireAccessTokenSuccess(accessToken));
+      dispatch(acquireAccessTokenSuccess(accessToken, scopes));
     },
     silentError => {
       dispatch(acquireAccessTokenFailed(silentError));
       userAgentApplication.acquireTokenPopup(scopes).then(
         accessToken => {
-          dispatch(acquireAccessTokenSuccess(accessToken));
+          dispatch(acquireAccessTokenSuccess(accessToken, scopes));
         },
         popupError => {
           dispatch(acquireAccessTokenFailed(popupError));
