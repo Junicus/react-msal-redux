@@ -13,7 +13,7 @@ export const msalReducer = (state: IAuthState = initialState, action: AuthAction
       return {
         error: action.payload.error,
       };
-    case AuthTypes.SINGOUT_SUCCESS:
+    case AuthTypes.SIGNOUT:
       return {};
     case AuthTypes.ACQUIRE_IDTOKEN_SUCCESS:
       return {
