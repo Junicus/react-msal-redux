@@ -7,7 +7,6 @@ import {
   callbackSuccess,
   signInFailed,
   signInSuccess,
-  signOutSuccess,
 } from './actions';
 import { AuthActionsTypes, AuthTypes, IAuthState, IMsalOptions, ISignInActionPayload } from './types';
 
@@ -27,7 +26,7 @@ export const msalMiddleware = (clientId: string, authority: string, options?: IM
         signIn(action.payload)(dispatch);
         return next(action);
       case AuthTypes.SIGNOUT:
-        signOut()(dispatch);
+        signOut();
         return next(action);
       case AuthTypes.ACQUIRE_ACCESSTOKEN_SUCCESS:
         setTimeout(() => acquireAccessToken(action.payload.scopes)(dispatch), 600000);
@@ -64,6 +63,8 @@ const signIn = (payload: ISignInActionPayload) => (dispatch: Dispatch<AuthAction
         .catch(error => {
           dispatch(signInFailed(error));
         });
+    } else {
+      userAgentApplication.loginRedirect(scopes);
     }
   }
 };
@@ -87,7 +88,6 @@ const acquireAccessToken = (scopes: string[]) => (dispatch: Dispatch<AuthActions
   );
 };
 
-const signOut = () => (dispatch: Dispatch<AuthActionsTypes>) => {
+const signOut = () => () => {
   userAgentApplication.logout();
-  dispatch(signOutSuccess());
 };

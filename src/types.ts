@@ -6,7 +6,6 @@ export enum AuthTypes {
   SINGIN_FAILED = '@auth/SINGNIN_FAILED',
 
   SIGNOUT = '@auth/SIGNOUT',
-  SINGOUT_SUCCESS = '@auth/SINGNOUT_SUCCESS',
 
   CALLBACK_SUCCESS = '@auth/CALLBACK_SUCCESS',
 
@@ -65,10 +64,6 @@ export interface ISignOutAtion {
   type: typeof AuthTypes.SIGNOUT;
 }
 
-export interface ISignOutSuccessAction {
-  type: typeof AuthTypes.SINGOUT_SUCCESS;
-}
-
 export interface IAcquireIdTokenSucceessAction {
   type: typeof AuthTypes.ACQUIRE_IDTOKEN_SUCCESS;
   payload: {
@@ -100,7 +95,6 @@ export type AuthActionsTypes =
   | ISignInSuccessAction
   | ISignInFailedAction
   | ISignOutAtion
-  | ISignOutSuccessAction
   | IAcquireIdTokenSucceessAction
   | IAcquireAccessTokenSuccessAction
   | IAcquireAccessTokenFailedAction

@@ -33,12 +33,6 @@ export const signInFailed = (error: Error): AuthActionsTypes => {
   };
 };
 
-export const signOutSuccess = (): AuthActionsTypes => {
-  return {
-    type: AuthTypes.SINGOUT_SUCCESS,
-  };
-};
-
 export const callbackSuccess = (): AuthActionsTypes => {
   return {
     type: AuthTypes.CALLBACK_SUCCESS,
