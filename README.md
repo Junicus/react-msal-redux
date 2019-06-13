@@ -8,6 +8,12 @@ React library that supports authenticating against Azure AD using Msal and Redux
 npm install @junicus_/react-msal-redux
 ```
 
+or
+
+```sh
+yarn add @junicus_/react-msal-redux
+```
+
 ## Usage
 
 ```js
