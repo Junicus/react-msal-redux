@@ -8,17 +8,17 @@ import {
   signInFailed,
   signInSuccess,
 } from './actions';
-import { AuthActionsTypes, AuthTypes, IAuthState, IMsalOptions, ISignInActionPayload } from './types';
+import { AuthActionsTypes, AuthState, AuthTypes, MsalOptions, SignInActionPayload } from './types';
 
 let userAgentApplication: UserAgentApplication = null;
 
-export const msalMiddleware = (clientId: string, authority: string, options?: IMsalOptions): Middleware => {
-  const mergedOptions: IMsalOptions = {
+export const msalMiddleware = (clientId: string, authority: string, options?: MsalOptions): Middleware => {
+  const mergedOptions: MsalOptions = {
     navigateToLoginRequestUrl: false,
     ...options,
   };
   userAgentApplication = new UserAgentApplication(clientId, authority, null, mergedOptions);
-  return ({ getState, dispatch }: MiddlewareAPI<Dispatch<AuthActionsTypes>, IAuthState>) => (next: Dispatch) => (
+  return ({ getState, dispatch }: MiddlewareAPI<Dispatch<AuthActionsTypes>, AuthState>) => (next: Dispatch) => (
     action: AuthActionsTypes,
   ) => {
     switch (action.type) {
@@ -37,7 +37,7 @@ export const msalMiddleware = (clientId: string, authority: string, options?: IM
   };
 };
 
-const signIn = (payload: ISignInActionPayload) => (dispatch: Dispatch<AuthActionsTypes>) => {
+const signIn = (payload: SignInActionPayload) => (dispatch: Dispatch<AuthActionsTypes>) => {
   const scopes = payload.scopes || [userAgentApplication.clientId];
   if (userAgentApplication.isCallback(window.location.hash)) {
     dispatch(callbackSuccess());

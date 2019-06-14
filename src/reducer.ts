@@ -1,8 +1,8 @@
-import { AuthActionsTypes, AuthTypes, IAuthState } from './types';
+import { AuthActionsTypes, AuthState, AuthTypes } from './types';
+/*  */
+const initialState: AuthState = {};
 
-const initialState: IAuthState = {};
-
-export const msalReducer = (state: IAuthState = initialState, action: AuthActionsTypes) => {
+export const msalReducer = (state: AuthState = initialState, action: AuthActionsTypes) => {
   switch (action.type) {
     case AuthTypes.SINGIN_SUCCESS:
       return {

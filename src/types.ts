@@ -15,7 +15,7 @@ export enum AuthTypes {
   ACQUIRE_ACCESSTOKEN_FAILED = '@auth/ACQUIRE_ACCESSTOKEN_FAILED',
 }
 
-export interface IMsalOptions {
+export interface MsalOptions {
   validateAuthority?: boolean;
   cacheLocation?: string;
   redirectUri?: string | (() => string);
@@ -30,48 +30,48 @@ export interface IMsalOptions {
   storeAuthStateInCookie?: boolean;
 }
 
-export interface IAuthState {
+export interface AuthState {
   accessToken?: string;
   idToken?: string;
   user?: msal.User;
 }
 
-export interface ISignInActionPayload {
+export interface SignInActionPayload {
   popup?: boolean;
   scopes: string[];
 }
 
-export interface ISignInAction {
+export interface SignInAction {
   type: typeof AuthTypes.SIGNIN;
-  payload: ISignInActionPayload;
+  payload: SignInActionPayload;
 }
 
-export interface ISignInSuccessAction {
+export interface SignInSuccessAction {
   type: typeof AuthTypes.SINGIN_SUCCESS;
   payload: {
     user: msal.User;
   };
 }
 
-export interface ISignInFailedAction {
+export interface SignInFailedAction {
   type: typeof AuthTypes.SINGIN_FAILED;
   payload: {
     error: any;
   };
 }
 
-export interface ISignOutAtion {
+export interface SignOutAction {
   type: typeof AuthTypes.SIGNOUT;
 }
 
-export interface IAcquireIdTokenSucceessAction {
+export interface AcquireIdTokenSuccessAction {
   type: typeof AuthTypes.ACQUIRE_IDTOKEN_SUCCESS;
   payload: {
     idToken: string;
   };
 }
 
-export interface IAcquireAccessTokenSuccessAction {
+export interface AcquireAccessTokenSuccessAction {
   type: typeof AuthTypes.ACQUIRE_ACCESSTOKEN_SUCCESS;
   payload: {
     accessToken: string;
@@ -79,23 +79,23 @@ export interface IAcquireAccessTokenSuccessAction {
   };
 }
 
-export interface IAcquireAccessTokenFailedAction {
+export interface AcquireAccessTokenFailedAction {
   type: typeof AuthTypes.ACQUIRE_ACCESSTOKEN_FAILED;
   payload: {
     error: any;
   };
 }
 
-export interface ICallbackSuccessAction {
+export interface CallbackSuccessAction {
   type: typeof AuthTypes.CALLBACK_SUCCESS;
 }
 
 export type AuthActionsTypes =
-  | ISignInAction
-  | ISignInSuccessAction
-  | ISignInFailedAction
-  | ISignOutAtion
-  | IAcquireIdTokenSucceessAction
-  | IAcquireAccessTokenSuccessAction
-  | IAcquireAccessTokenFailedAction
-  | ICallbackSuccessAction;
+  | SignInAction
+  | SignInSuccessAction
+  | SignInFailedAction
+  | SignOutAction
+  | AcquireIdTokenSuccessAction
+  | AcquireAccessTokenSuccessAction
+  | AcquireAccessTokenFailedAction
+  | CallbackSuccessAction;
