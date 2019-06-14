@@ -1,6 +1,6 @@
 {
   "name": "@junicus_/react-msal-redux",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "React library that supports authenticating against Azure AD using Msal and Redux",
   "main": "build/index.js",
   "types": "build/index.d.ts",
