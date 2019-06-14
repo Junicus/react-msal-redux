@@ -34,6 +34,7 @@ export interface AuthState {
   accessToken?: string;
   idToken?: string;
   user?: msal.User;
+  error?: any;
 }
 
 export interface SignInActionPayload {
