@@ -1,8 +1,8 @@
-import { AuthActionsTypes, AuthState, AuthTypes } from './types';
-/*  */
+import { AuthState, AuthTypes, MsalReducer } from './types';
+
 const initialState: AuthState = {};
 
-export const msalReducer = (state: AuthState = initialState, action: AuthActionsTypes) => {
+export const msalReducer: MsalReducer = (state = initialState, action) => {
   switch (action.type) {
     case AuthTypes.SINGIN_SUCCESS:
       return {
@@ -26,10 +26,9 @@ export const msalReducer = (state: AuthState = initialState, action: AuthActions
         accessToken: action.payload.accessToken,
       };
     case AuthTypes.ACQUIRE_ACCESSTOKEN_FAILED:
-      return {
-        ...state,
-        accessToken: undefined,
-      };
+      const newState = { ...state };
+      delete newState.accessToken;
+      return newState;
     default:
       return state;
   }

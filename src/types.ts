@@ -1,4 +1,5 @@
 import * as msal from 'msal';
+import { Reducer } from 'redux';
 
 export enum AuthTypes {
   SIGNIN = '@auth/SIGNIN',
@@ -100,3 +101,5 @@ export type AuthActionsTypes =
   | AcquireAccessTokenSuccessAction
   | AcquireAccessTokenFailedAction
   | CallbackSuccessAction;
+
+export type MsalReducer = Reducer<AuthState, AuthActionsTypes>;
