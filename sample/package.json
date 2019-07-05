@@ -11,7 +11,11 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8"
   },
+  "devDependencies": {
+    "rimraf": "^2.6.3"
+  },
   "scripts": {
+    "clean_nm": "rimraf node_modules",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
