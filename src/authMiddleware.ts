@@ -33,7 +33,7 @@ export const authMiddleware = (configuration: Configuration): Middleware => {
   };
 };
 
-export const login = (payload: SignInActionPayload) => (dispatch: Dispatch<AuthActionsTypes>) => {
+const login = (payload: SignInActionPayload) => (dispatch: Dispatch<AuthActionsTypes>) => {
   const scopes = payload.scopes || [userAgentApplication.getCurrentConfiguration().auth.clientId];
 
   if (userAgentApplication.isCallback(window.location.hash)) {
@@ -92,6 +92,6 @@ const acquireAccessToken = (scopes: string[]) => (dispatch: Dispatch<AuthActions
     });
 };
 
-export const logout = () => () => {
+const logout = () => () => {
   userAgentApplication.logout();
 };

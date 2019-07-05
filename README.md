@@ -60,7 +60,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(login(['openid'], true)),
+  login: () => dispatch(login({ popup: true, scopes: ['openid'] })),
   logout: () => dispatch(logout()),
 });
 
@@ -90,10 +90,9 @@ Dispatch to trigger a login
 
 #### Args
 
-| Parameter | Type     | Description                                     |
-| --------- | -------- | ----------------------------------------------- |
-| scopes    | string[] | Array of strings that list the requested scopes |
-| popup     | ?boolean | True to trigger login using a popup             |
+| Parameter | Type          | Description                              |
+| --------- | ------------- | ---------------------------------------- |
+| payload   | SignInPayload | `{ popup?: boolean; scopes: string[]; }` |
 
 ### Logout
 

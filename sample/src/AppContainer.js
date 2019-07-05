@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(login(['openid'], true)),
+  login: () => dispatch(login({ popup: true, scopes: ['openid'] })),
   logout: () => dispatch(logout()),
 });
 

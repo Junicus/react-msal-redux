@@ -14,7 +14,7 @@ import {
   SignInSuccessAction,
 } from './types';
 
-export const signIn: ActionCreator<SignInAction> = (payload: SignInActionPayload) => ({
+export const login: ActionCreator<SignInAction> = (payload: SignInActionPayload) => ({
   payload,
   type: AuthTypes.SIGNIN,
 });
