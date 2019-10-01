@@ -23,6 +23,8 @@ const reducer: Reducer<AuthState, AuthActionsTypes> = (state = initialState, act
       const newState = { ...state, error: action.payload.error };
       delete newState.accessToken;
       return newState;
+    case AuthTypes.SIGNOUT:
+      return initialState;
     default:
       return state;
   }
