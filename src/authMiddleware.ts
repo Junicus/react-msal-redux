@@ -40,7 +40,7 @@ const login = (payload: SignInActionPayload) => (dispatch: Dispatch<AuthActionsT
     dispatch(callbackSuccess());
   }
 
-  let user = userAgentApplication.getAccount();
+  const user = userAgentApplication.getAccount();
   const currentEpoch = Math.ceil(Date.now() / 1000);
   const tokenExpired = user ? (user.idToken as any).exp < currentEpoch : false;
 
